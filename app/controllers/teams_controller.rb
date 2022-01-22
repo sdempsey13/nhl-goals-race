@@ -1,6 +1,4 @@
-require 'json'
-require 'uri'
-require 'net/http'
+
 
 class TeamsController < ApplicationController
     def index
@@ -17,17 +15,6 @@ class TeamsController < ApplicationController
         team_props = get_team_props(data)
 
         create_teams(team_props)
-    end
-
-    # Make a GET request to an NHL API and parse the response into JSON
-    # @params [String] the url of the NHL API endpoint you wish to call
-    # returns [JSON or hash? not 100% sure yet] the data you wanted in an easily digestible Ruby structure
-    def get_parsed_nhl_api_data(url)
-        uri = URI(url)
-
-        res = Net::HTTP.get(uri)
-        
-        data = JSON.parse(res)
     end
 
     # Extract team creating information from the API endpoint and get it ready for use
@@ -50,9 +37,9 @@ class TeamsController < ApplicationController
         team = Team.new(team_prop)
 
         if team.save
-            puts "saved teams"
+            puts "saved team"
         else
-            puts "teams not saved"
+            puts "team not saved"
         end
         end
     end
