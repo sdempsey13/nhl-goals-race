@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_201747) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
-    t.string "number"
+    t.string "nhlID"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "team_id", null: false

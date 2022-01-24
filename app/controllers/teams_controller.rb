@@ -34,13 +34,13 @@ class TeamsController < ApplicationController
     # @params [Array] an array of hashed with team properties
     def create_teams(team_props)
         team_props.each do |team_prop|
-        team = Team.new(team_prop)
+            team = Team.new(team_prop)
 
-        if team.save
-            puts "saved team"
-        else
-            puts "team not saved"
-        end
+            if team.save
+                puts "saved team"
+            else
+                puts "team not saved"
+            end
         end
     end
   end
