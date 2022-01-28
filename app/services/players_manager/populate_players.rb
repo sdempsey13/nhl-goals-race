@@ -14,7 +14,7 @@ module PlayersManager
                     player_props = {
                         name: player['person']['fullName'],
                         nhlID: player['person']['id'],
-                        team_id: team_lookup(team['id'].to_s)
+                        team_id: team_lookup(team['id'])
                     }
                     players << player_props
                 end
@@ -22,14 +22,7 @@ module PlayersManager
     
             players
         end
-    
-        # Take the NHL ID and return our internal Team ID
-        # @param [String] the NHL ID
-        # @return [Integer] internal Team ID
-        def team_lookup(nhlID)
-            internal_id = Team.where(nhlID: nhlID).first.id
-        end
-    
+
         def create_player(player_props)
             player_props.each do |player_prop|
                 player = Player.new(player_prop)
