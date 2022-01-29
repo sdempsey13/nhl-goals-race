@@ -13,7 +13,7 @@ module PlayersManager
                 team['roster']['roster'].each do |player|
                     player_props = {
                         name: player['person']['fullName'],
-                        nhlID: player['person']['id'],
+                        nhl_id: player['person']['id'],
                         team_id: team_lookup(team['id'])
                     }
                     players << player_props

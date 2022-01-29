@@ -19,7 +19,7 @@ module TeamsManager
             teams = []
             
             data['teams'].each do |team|
-                team_props = {name: team['name'], nhlID: team['id']}
+                team_props = {name: team['name'], nhl_id: team['id']}
                 teams << team_props
             end
             teams

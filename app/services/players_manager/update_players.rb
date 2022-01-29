@@ -23,7 +23,7 @@ module PlayersManager
             
             count = 0
             players.each do |player|
-                if team_lookup[player.nhlID.to_i] = player.team_id
+                if team_lookup[player.nhl_id.to_i] = player.team_id
                     puts 'same team'
                 else
                     count += 1

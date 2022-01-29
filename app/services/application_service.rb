@@ -19,8 +19,8 @@ class ApplicationService
     # Take the NHL ID and return our internal Team ID
     # @param [String] the NHL ID
     # @return [Integer] internal Team ID
-    def team_lookup(nhlID)
+    def team_lookup(nhl_id)
         #Make this more efficient by grabbing a teams object once instead of querying every time
-        internal_id = Team.where(nhlID: nhlID).first.id
+        internal_id = Team.where(nhl_id: nhl_id).first.id
     end
 end
