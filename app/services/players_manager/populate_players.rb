@@ -14,7 +14,8 @@ module PlayersManager
                     player_props = {
                         name: player['person']['fullName'],
                         nhl_id: player['person']['id'],
-                        team_id: team_lookup(team['id'])
+                        team_id: team_lookup(team['id']),
+                        active: true
                     }
                     players << player_props
                 end
