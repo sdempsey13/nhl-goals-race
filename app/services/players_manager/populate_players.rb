@@ -15,8 +15,7 @@ module PlayersManager
                         name: player['person']['fullName'],
                         nhl_id: player['person']['id'],
                         team_id: team_lookup(team['id']),
-                        active: true,
-                        last_active: Time.now
+                        active: true
                     }
                     players << player_props
                 end
