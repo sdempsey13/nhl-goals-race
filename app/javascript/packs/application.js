@@ -8,7 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-require("d3")
+//= require d3-rails
 
 Rails.start()
 Turbolinks.start()
