@@ -8,8 +8,9 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-//= require d3-rails
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("packs/goals_bar_chart_race")
+require("d3")
