@@ -12,5 +12,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("packs/goals_bar_chart_race")
-require("d3")
+require("jquery");
+require("d3");
+require("packs/goals_bar_chart_race");
