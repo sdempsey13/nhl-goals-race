@@ -17,12 +17,39 @@ var loadData = function(){
 };
 
 function error() {
-console.log("Something went wrong!");
+  console.log("Something went wrong!");
 }
+
+const w = 750, h = 500, padding = 2;
 
 // draw bar plot
 function drawBarPlot(data){
-  console.log(d3.min(data));
+  const dataset = data;
+  let nums = []
+
+  for (var i=0; i < data.length; i++) {
+    nums.push(data[i]['goals']);
+ }
+
+ console.log(nums);
+ let svg = d3.select("body").append("svg")
+              .attr("width", w)
+              .attr("height", h);
+
+svg.selectAll("rect")
+  .data(nums)
+  .enter()
+  .append("rect")
+    .attr("x", function(d, i) {
+      return i * (w / nums.length);
+    })
+    .attr("y", function(d) {
+      return h - (d * 10);
+    })
+    .attr("width", w / nums.length - padding)
+    .attr("height", function(d) {
+      return d * 10;
+    })
 };
 
 // fetch data on page load

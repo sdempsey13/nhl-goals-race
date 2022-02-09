@@ -1,0 +1,12 @@
+[
+    { "date": "2022-2-8", "name": "Chris Kreider", "team": "New York Rangers", "goals": 33 },
+    { "date": "2022-2-8", "name": "Leon Draisaitl", "team": "Edmonton Oilders", "goals": 32 },
+    { "date": "2022-2-8", "name": "Auston Matthews", "team": "Toronto Maple Leafs", "goals": 31 },
+    { "date": "2022-2-8", "name": "Alex Ovechkin", "team": "Washington Capitals", "goals": 29 },
+    { "date": "2022-2-8", "name": "Alex DeBrincat", "team": "Chicago Blackhawks", "goals": 26 },
+    { "date": "2022-2-8", "name": "Kyle Connor", "team": "Winnipeg Jets", "goals": 25 },
+    { "date": "2022-2-8", "name": "Troy Terry", "team": "Anaheim Meighty Ducks", "goals": 25 },
+    { "date": "2022-2-8", "name": "Mikko Rantanen", "team": "Colorado Avalanch", "goals": 24 },
+    { "date": "2022-2-8", "name": "Filip Forsberg", "team": "Nashville Predators", "goals": 24 },
+    { "date": "2022-2-8", "name": "Connor McDavid", "team": "Edmonton Oilders", "goals": 23 }
+]
