@@ -11,13 +11,15 @@ module PlayersManager
     
             data['teams'].each do |team|
                 team['roster']['roster'].each do |player|
-                    player_props = {
-                        name: player['person']['fullName'],
-                        nhl_id: player['person']['id'],
-                        team_id: team_lookup(team['id']),
-                        active: true
-                    }
-                    players << player_props
+                    unless player['position']['code'] == 'G'
+                        player_props = {
+                            name: player['person']['fullName'],
+                            nhl_id: player['person']['id'],
+                            team_id: team_lookup(team['id']),
+                            active: true
+                        }
+                        players << player_props
+                    end
                 end
             end
     
