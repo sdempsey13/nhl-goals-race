@@ -1,0 +1,2 @@
+class GoalsRaceDatum < ApplicationRecord
+end
