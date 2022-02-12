@@ -20,7 +20,8 @@ class ApplicationService
     # @param [String] the NHL ID
     # @return [Integer] internal Team ID
     def team_lookup(nhl_id)
-        #Make this more efficient by grabbing a teams object once instead of querying every time
+        # Make this more efficient by grabbing a teams object once instead of querying every time
+        # Or make a constants hash so we don't have to hit the db for every single player
         internal_id = Team.where(nhl_id: nhl_id).first.id
     end
 end

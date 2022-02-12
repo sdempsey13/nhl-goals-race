@@ -20,13 +20,13 @@ module PlayersManager
 
         def update_players_team(team_lookup)
             players = Player.all.includes(:team)
-            
-            count = 0
+
             players.each do |player|
-                if team_lookup[player.nhl_id.to_i] = player.team_id
+                if team_lookup[player.nhl_id.to_i] == player.team_id
                     puts 'same team'
                 else
-                    count += 1
+                    player.team_id = team_lookup[player.nhl_id.to_i]
+                    player.save
                 end
             end
 
