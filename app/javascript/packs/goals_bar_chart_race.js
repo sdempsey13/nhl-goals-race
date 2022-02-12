@@ -31,7 +31,14 @@ function drawBarPlot(data){
     nums.push(data[i]['goals']);
  }
 
+
+ console.log(dataset.filter(d => d['name'] === "Alex DeBrincat"));
+ console.log(d3.group(dataset, d => d.name));
  console.log(nums);
+ var names = new Set(dataset.map(d => d.name));
+ console.log(names);
+
+
  let svg = d3.select("body").append("svg")
               .attr("width", w)
               .attr("height", h);
