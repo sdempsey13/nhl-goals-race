@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_02_12_221041) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "goals_race_data", force: :cascade do |t|
     t.string "date"
     t.string "name"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_02_12_221041) do
     t.string "nhl_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "team_id", null: false
+    t.bigint "team_id", null: false
     t.boolean "active"
     t.index ["team_id"], name: "index_players_on_team_id"
   end
