@@ -5,7 +5,7 @@ GEM
       actionpack (= 6.1.4.4)
       activesupport (= 6.1.4.4)
       nio4r (~> 2.0)
-      websocket-griver (>= 0.6.1)
+      websocket-driver (>= 0.6.1)
     actionmailbox (6.1.4.4)
       actionpack (= 6.1.4.4)
       activejob (= 6.1.4.4)
