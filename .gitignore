@@ -39,4 +39,4 @@
 yarn-debug.log*
 .yarn-integrity
 
-/app/data/
+/app/data/*
