@@ -1,0 +1,15 @@
+current directory: /Users/stevendempsey/Ruby/nhl-goals-race/vendor/cache/ruby/2.7.0/gems/bootsnap-1.10.3/ext/bootsnap
+/Users/stevendempsey/.rvm/rubies/ruby-2.7.2/bin/ruby -I /Users/stevendempsey/.rvm/rubies/ruby-2.7.2/lib/ruby/2.7.0 -r ./siteconf20220202-86018-nv5ug1.rb extconf.rb
+creating Makefile
+
+current directory: /Users/stevendempsey/Ruby/nhl-goals-race/vendor/cache/ruby/2.7.0/gems/bootsnap-1.10.3/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/stevendempsey/Ruby/nhl-goals-race/vendor/cache/ruby/2.7.0/gems/bootsnap-1.10.3/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/stevendempsey/Ruby/nhl-goals-race/vendor/cache/ruby/2.7.0/gems/bootsnap-1.10.3/ext/bootsnap
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 bootsnap.bundle ./.gem.20220202-86018-1gbewpw/bootsnap
