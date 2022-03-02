@@ -11,7 +11,7 @@ module PlayersManager
     
             data['teams'].each do |team|
                 team['roster']['roster'].each do |player|
-                    unless player['position']['code'] == 'G'
+                    if player['position']['type'] == 'Forward'
                         player_props = {
                             name: player['person']['fullName'],
                             nhl_id: player['person']['id'],
