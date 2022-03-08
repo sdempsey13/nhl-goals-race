@@ -8,7 +8,7 @@ var loadData = function(){
     url: '/',
     dataType: 'json',
     success: function(data){
-      drawBarPlot(data);
+      // drawBarPlot(data);
     },
     failure: function(result){
       error();
@@ -20,46 +20,32 @@ function error() {
   console.log("Something went wrong!");
 }
 
-const w = 750, h = 500, padding = 2;
+function drawBarPlot(data) {
+  data.forEach(d => {
+    d.age = Number(d.age)
+  })
+  console.log(data)
 
-// draw bar plot
-function drawBarPlot(data){
-  const dataset = data;
-  let nums = []
-
-  for (var i=0; i < data.length; i++) {
-    nums.push(data[i]['goals']);
- }
-
-
- console.log(dataset.filter(d => d['name'] === "Alex DeBrincat"));
- console.log(d3.group(dataset, d => d.name));
- console.log(nums);
- var names = new Set(dataset.map(d => d.name));
- console.log(names);
-
-
- let svg = d3.select("body").append("svg")
-              .attr("width", w)
-              .attr("height", h);
-
-svg.selectAll("rect")
-  .data(nums)
-  .enter()
-  .append("rect")
-    .attr("x", function(d, i) {
-      return i * (w / nums.length);
-    })
-    .attr("y", function(d) {
-      return h - (d * 10);
-    })
-    .attr("width", w / nums.length - padding)
-    .attr("height", function(d) {
-      return d * 10;
-    })
-};
+}
 
 // fetch data on page load
 $(document).ready(function(){ 
   loadData(); 
+
+  console.log('here');
+
+  const data = [25, 20, 15, 10, 12]
+
+  const svg = d3.select("#chart-area").append("svg")
+      .attr("width", "100%")
+      .attr("height", 500)
+
+  const circles = svg.selectAll("circle")
+      .data(data)
+
+  circles.enter().append("circle")
+      .attr("cx", (d, i) => (i * 50) + 50)
+      .attr("cy", 250)
+      .attr("r", (d) => d)
+      .attr("fill", "red")
 });

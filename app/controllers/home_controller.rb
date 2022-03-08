@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    data = File.open('app/data/goals-race-data.json')
+    data = File.open('app/data/d3-test-data.json')
 
     file_data = data.read
 
