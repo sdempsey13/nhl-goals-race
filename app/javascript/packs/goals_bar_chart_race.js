@@ -8,7 +8,7 @@ var loadData = function(){
     url: '/',
     dataType: 'json',
     success: function(data){
-      // drawBarPlot(data);
+      drawBarPlot(data);
     },
     failure: function(result){
       error();
@@ -22,30 +22,38 @@ function error() {
 
 function drawBarPlot(data) {
   data.forEach(d => {
-    d.age = Number(d.age)
+    d.height = Number(d.height)
   })
-  console.log(data)
+  
+  const x = d3.scaleBand()
+  .domain(["Burj Khalifa", "Shanghai Tower",
+    "Abraj Al-Bait Clock Tower", "Ping An Finance Centre",
+    "Lotte World Tower"])
+  .range([0, 400])
+  .paddingInner(0.2)
+  .paddingOuter(0.2)
+
+  const y = d3.scaleLinear()
+    .domain([0, 828])
+    .range([0, 400])
+
+  const svg = d3.select("#chart-area").append("svg")
+    .attr("width", 400)
+    .attr("height", 400)
+
+  const rectangles = svg.selectAll("rect")
+    .data(data)
+
+  rectangles.enter().append("rect")
+    .attr("x", (d) => x(d.name))
+    .attr("y", 0)
+    .attr("width", x.bandwidth)
+    .attr("height", d => y(d.height))
+    .attr("fill", "white")
 
 }
 
 // fetch data on page load
 $(document).ready(function(){ 
   loadData(); 
-
-  console.log('here');
-
-  const data = [25, 20, 15, 10, 12]
-
-  const svg = d3.select("#chart-area").append("svg")
-      .attr("width", "100%")
-      .attr("height", 500)
-
-  const circles = svg.selectAll("circle")
-      .data(data)
-
-  circles.enter().append("circle")
-      .attr("cx", (d, i) => (i * 50) + 50)
-      .attr("cy", 250)
-      .attr("r", (d) => d)
-      .attr("fill", "red")
 });
