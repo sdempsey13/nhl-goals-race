@@ -23,9 +23,9 @@ class GenerateGoalsRaceJsonFile < ApplicationService
             end
         end
 
-        chart_data = data.slice(0, 10).as_json
+        puts data
 
-        File.write('app/data/goals-race-data.json', JSON.dump(chart_data))
+        File.write('app/data/goals-race-data.json', JSON.dump(data))
     end
     
     # def call
