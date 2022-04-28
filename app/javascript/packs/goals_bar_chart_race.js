@@ -32,8 +32,8 @@ $(document).ready(function(){
   ]
 
   const MARGIN = { LEFT: 10, RIGHT: 5, TOP: 25, BOTTOM: 5 };
-  const WIDTH = 1200 - MARGIN.LEFT - MARGIN.RIGHT;
-  const HEIGHT = 600 - MARGIN.TOP - MARGIN.BOTTOM;
+  const WIDTH = 900 - MARGIN.LEFT - MARGIN.RIGHT;
+  const HEIGHT = 450 - MARGIN.TOP - MARGIN.BOTTOM;
 
   const svg = d3.select("#chart-area").append("svg")
     .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
@@ -59,16 +59,16 @@ $(document).ready(function(){
 
   function drawBarPlot(data){
     const cleanData = data.slice().sort((a, b) => d3.descending(a.goals, b.goals)).slice(0, 10);
-    // console.log(cleanData);
+    console.log(cleanData);
 
     const x = d3.scaleLinear()
-      .domain([0, d3.max(cleanData, d => d.goals)])
-      .range([WIDTH, 75]);
+      .domain([0, 75])
+      .range([0, WIDTH]);
 
     const y = d3.scaleBand()
       .domain(cleanData.map(d => d.name))
       .range([0, HEIGHT])
-      .paddingInner(0.15)
+      .paddingInner(0.2)
       .paddingOuter(0.1);
 
     const color = d3.scaleOrdinal()
@@ -81,7 +81,7 @@ $(document).ready(function(){
     rects.enter().append("rect")
       .attr("x", 0)
       .attr("y", d => y(d.name))
-      .attr("width", d => WIDTH - x(d.goals))
+      .attr("width", d => x(d.goals))
       .attr("height", y.bandwidth)
       .attr("fill", d => color(d.team));
 
@@ -91,6 +91,11 @@ $(document).ready(function(){
     g.append("g")
       .attr("class", "y-axis")
       .call(yAxisCall);
+
+      const xAxisCall = d3.axisTop(x)
+      g.append("g")
+        .attr("class", "x-axis")
+        .call(xAxisCall);
   }
 
   loadData();
