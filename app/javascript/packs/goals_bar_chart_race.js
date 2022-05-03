@@ -31,7 +31,7 @@ $(document).ready(function(){
      "#B4975A", "#99D9D9"
   ]
 
-  const MARGIN = { LEFT: 10, RIGHT: 5, TOP: 25, BOTTOM: 5 };
+  const MARGIN = { LEFT: 10, RIGHT: 10, TOP: 25, BOTTOM: 5 };
   const WIDTH = 900 - MARGIN.LEFT - MARGIN.RIGHT;
   const HEIGHT = 450 - MARGIN.TOP - MARGIN.BOTTOM;
 
@@ -62,7 +62,7 @@ $(document).ready(function(){
     console.log(cleanData);
 
     const x = d3.scaleLinear()
-      .domain([0, 75])
+      .domain([0, 60])
       .range([0, WIDTH]);
 
     const y = d3.scaleBand()
@@ -75,15 +75,33 @@ $(document).ready(function(){
       .domain(teams)
       .range(colors);
 
-    const rects = g.selectAll("rect")
+    const bar = svg.selectAll("g")
       .data(cleanData);
 
-    rects.enter().append("rect")
+    bar.enter().append("g");
+
+    bar.append("rect")
       .attr("x", 0)
       .attr("y", d => y(d.name))
       .attr("width", d => x(d.goals))
       .attr("height", y.bandwidth)
       .attr("fill", d => color(d.team));
+
+    bar.append("text")
+      .attr("x", d => x(d.goals))
+      .attr("y", 15)
+      .attr("dy", ".35em")
+      .text("hello");
+
+    // const rects = g.selectAll("rect")
+    //   .data(cleanData);
+
+    // rects.enter().append("rect")
+    //   .attr("x", 0)
+    //   .attr("y", d => y(d.name))
+    //   .attr("width", d => x(d.goals))
+    //   .attr("height", y.bandwidth)
+    //   .attr("fill", d => color(d.team));
 
     const yAxisCall = d3.axisLeft(y)
       .tickSize(0)
@@ -93,9 +111,12 @@ $(document).ready(function(){
       .call(yAxisCall);
 
       const xAxisCall = d3.axisTop(x)
+      .ticks(5)
+      .tickSize(0)
       g.append("g")
         .attr("class", "x-axis")
-        .call(xAxisCall);
+        .call(xAxisCall)
+        .call(g => g.select(".domain").remove());
   }
 
   loadData();
