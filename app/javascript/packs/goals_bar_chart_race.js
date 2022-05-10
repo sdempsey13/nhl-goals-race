@@ -33,7 +33,7 @@ $(document).ready(function(){
 
   const MARGIN = { LEFT: 10, RIGHT: 10, TOP: 25, BOTTOM: 5 };
   const WIDTH = 900 - MARGIN.LEFT - MARGIN.RIGHT;
-  const HEIGHT = 450 - MARGIN.TOP - MARGIN.BOTTOM;
+  const HEIGHT = 500 - MARGIN.TOP - MARGIN.BOTTOM;
 
   const svg = d3.select("#chart-area").append("svg")
     .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
@@ -62,7 +62,7 @@ $(document).ready(function(){
     console.log(cleanData);
 
     const x = d3.scaleLinear()
-      .domain([0, 60])
+      .domain([0, 75])
       .range([0, WIDTH]);
 
     const y = d3.scaleBand()
@@ -75,33 +75,30 @@ $(document).ready(function(){
       .domain(teams)
       .range(colors);
 
-    const bar = svg.selectAll("g")
+    const rects = g.selectAll("g")
       .data(cleanData);
 
-    bar.enter().append("g");
+    const bars = rects.enter()
+      .append("g")
 
-    bar.append("rect")
+    bars.append("rect")
       .attr("x", 0)
       .attr("y", d => y(d.name))
       .attr("width", d => x(d.goals))
       .attr("height", y.bandwidth)
       .attr("fill", d => color(d.team));
 
-    bar.append("text")
-      .attr("x", d => x(d.goals))
-      .attr("y", 15)
-      .attr("dy", ".35em")
-      .text("hello");
+    bars.append("text")
+      .attr("x", d => x(d.goals) + 3)
+      .attr("y", d => y(d.name) + 15)
+      .attr("fill", "white")
+      .text(d => d.name);
 
-    // const rects = g.selectAll("rect")
-    //   .data(cleanData);
-
-    // rects.enter().append("rect")
-    //   .attr("x", 0)
-    //   .attr("y", d => y(d.name))
-    //   .attr("width", d => x(d.goals))
-    //   .attr("height", y.bandwidth)
-    //   .attr("fill", d => color(d.team));
+    bars.append("text")
+      .attr("x", d => x(d.goals) + 3)
+      .attr("y", d => y(d.name) + 30)
+      .attr("fill", "white")
+      .text(d => d.goals);
 
     const yAxisCall = d3.axisLeft(y)
       .tickSize(0)
@@ -110,13 +107,13 @@ $(document).ready(function(){
       .attr("class", "y-axis")
       .call(yAxisCall);
 
-      const xAxisCall = d3.axisTop(x)
+    const xAxisCall = d3.axisTop(x)
       .ticks(5)
       .tickSize(0)
-      g.append("g")
-        .attr("class", "x-axis")
-        .call(xAxisCall)
-        .call(g => g.select(".domain").remove());
+    g.append("g")
+      .attr("class", "x-axis")
+      .call(xAxisCall)
+      .call(g => g.select(".domain").remove());
   }
 
   loadData();
