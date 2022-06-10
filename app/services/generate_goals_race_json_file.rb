@@ -25,7 +25,7 @@ class GenerateGoalsRaceJsonFile < ApplicationService
 
         puts data
 
-        File.write('app/data/goals-race-data.json', JSON.dump(data))
+        File.write('app/data/goals-race-data.json', JSON.pretty_generate(data))
     end
     
     # def call
@@ -33,6 +33,6 @@ class GenerateGoalsRaceJsonFile < ApplicationService
 
     #     chart_data = chart_data.as_json(only: [:date, :name, :team, :goals])
         
-    #     File.write('app/data/goals-race-data.json', JSON.dump(chart_data))
+    #     File.write('app/data/goals-race-data.json', JSON.pretty_generate(chart_data))
     # end
 end

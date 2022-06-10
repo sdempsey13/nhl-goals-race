@@ -9,7 +9,7 @@ class GenerateGoalsRaceData < ApplicationService
         players = Player.all
         
         start_date = Date.parse('2021-10-12')
-        end_date = Date.today
+        end_date = Date.parse('2022-04-29')
         
         data_array = []
 
