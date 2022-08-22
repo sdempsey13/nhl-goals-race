@@ -58,8 +58,83 @@ $(document).ready(function(){
   }
 
   function drawBarPlot(data){
-    const cleanData = data.slice().sort((a, b) => d3.descending(a.goals, b.goals)).slice(0, 10);
-    console.log(cleanData);
+
+    /*
+    const n = 10;
+
+    const names = new Set(data.map(d => d.name))
+
+    const datevalues = Array.from(d3.rollup(data, ([d]) => d.goals, d => d.date, d => d.name))
+      .map(([date, data]) => [new Date(date), data])
+      .sort(([a], [b]) => d3.ascending(a.goals, b.goals));
+
+    function rank(value) {
+      const data = Array.from(names, name => ({name, value: value(name)}));
+      
+      data.sort((a, b) => d3.descending(a.value, b.value));
+      
+      for (let i = 0; i < data.length; ++i) data[i].rank = Math.min(n, i);
+      return data;
+    }
+
+    const k = 10;
+
+    const keyframes = [];
+
+    let ka, a, kb, b;
+    
+    // [[first_date, first_map], [second_date, second_map]]
+    for ([[ka, a], [kb, b]] of d3.pairs(datevalues)) {
+      for (let i = 0; i < k; ++i) {
+        const t = i / k;
+        keyframes.push([
+          new Date(ka * (1 - t) + kb * t),
+          rank(name => (a.get(name) || 0) * (1 - t) + (b.get(name) || 0) * t)
+        ]);
+      }
+    }
+
+    keyframes.push([new Date(kb), rank(name => b.get(name) || 0)]);
+
+    const nameframes = d3.groups(keyframes.flatMap(([, data]) => data), d => d.name);
+
+    const prev = new Map(nameframes.flatMap(([, data]) => d3.pairs(data, (a, b) => [b, a])));
+
+    const next = new Map(nameframes.flatMap(([, data]) => d3.pairs(data)));
+    
+    console.log("nameframes");
+
+    console.log(nameframes);
+
+    console.log("prev");
+
+    console.log(prev);
+
+    console.log("next");
+
+    console.log(next);
+
+    // console.log(Object.keys(newData));
+    */
+
+
+    // One day data
+
+    console.log(data);
+
+    const cleanData = data.sort((a, b) => d3.descending(a.date, b.date));
+
+    function groupByKey(array, key) {
+      return array
+        .reduce((hash, obj) => {
+          if(obj[key] === undefined) return hash; 
+          return Object.assign(hash, { [obj[key]]:( hash[obj[key]] || [] ).concat(obj)})
+        }, {})
+   }
+
+   var result = groupByKey(cleanData, 'date');
+
+   console.log(result);
 
     const x = d3.scaleLinear()
       .domain([0, 75])
@@ -103,17 +178,23 @@ $(document).ready(function(){
     const yAxisCall = d3.axisLeft(y)
       .tickSize(0)
       .tickFormat('');
+
     g.append("g")
       .attr("class", "y-axis")
       .call(yAxisCall);
 
     const xAxisCall = d3.axisTop(x)
       .ticks(5)
-      .tickSize(0)
+      .tickSize(0);
+
     g.append("g")
       .attr("class", "x-axis")
       .call(xAxisCall)
       .call(g => g.select(".domain").remove());
+
+    d3.interval(() => {
+      console.log("Hello");
+    }, 500);
   }
 
   loadData();
