@@ -130,12 +130,16 @@ $(document).ready(function(){
           if(obj[key] === undefined) return hash; 
           return Object.assign(hash, { [obj[key]]:( hash[obj[key]] || [] ).concat(obj)})
         }, {})
-   }
+    }
 
-   var result = groupByKey(cleanData, 'date');
+    var result = groupByKey(cleanData, 'date');
 
-   console.log(result);
+    const test = result["2021-12-12"].sort((a, b) => d3.descending(a.goals, b.goals));
 
+    
+    console.log(test);
+
+    /*
     const x = d3.scaleLinear()
       .domain([0, 75])
       .range([0, WIDTH]);
@@ -192,6 +196,7 @@ $(document).ready(function(){
       .call(xAxisCall)
       .call(g => g.select(".domain").remove());
 
+    */
     d3.interval(() => {
       console.log("Hello");
     }, 500);
