@@ -119,10 +119,14 @@ $(document).ready(function(){
 
 
     // One day data
+    
+    // console.log(data);
+    
+    // console.log(Array.isArray(data)) => true
 
-    console.log(data);
+    const cleanData = data.sort((a, b) => d3.ascending(a.date, b.date));
 
-    const cleanData = data.sort((a, b) => d3.descending(a.date, b.date));
+    var grouped = groupByKey(data, 'date');
 
     function groupByKey(array, key) {
       return array
@@ -132,20 +136,20 @@ $(document).ready(function(){
         }, {})
     }
 
-    var result = groupByKey(cleanData, 'date');
+    for (let obj of Object.values(grouped)) {
+      obj.sort((a, b) => d3.descending(a.goals, b.goals));
+    }
 
-    const test = result["2021-12-12"].sort((a, b) => d3.descending(a.goals, b.goals));
+    console.log(grouped);
+
 
     
-    console.log(test);
-
-    /*
     const x = d3.scaleLinear()
       .domain([0, 75])
       .range([0, WIDTH]);
 
     const y = d3.scaleBand()
-      .domain(cleanData.map(d => d.name))
+      .domain(sortedData.map(d => d.name))
       .range([0, HEIGHT])
       .paddingInner(0.2)
       .paddingOuter(0.1);
@@ -155,10 +159,14 @@ $(document).ready(function(){
       .range(colors);
 
     const rects = g.selectAll("g")
-      .data(cleanData);
+      .data(sortedData);
+
+    // console.log(rects);
 
     const bars = rects.enter()
       .append("g")
+
+    // console.log(rects);
 
     bars.append("rect")
       .attr("x", 0)
@@ -196,7 +204,9 @@ $(document).ready(function(){
       .call(xAxisCall)
       .call(g => g.select(".domain").remove());
 
-    */
+    console.log("bars");
+    console.log(bars);
+
     d3.interval(() => {
       console.log("Hello");
     }, 500);
