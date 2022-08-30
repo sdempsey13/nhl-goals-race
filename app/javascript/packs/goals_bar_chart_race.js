@@ -142,6 +142,10 @@ $(document).ready(function(){
 
     console.log(grouped);
 
+    const sortedData = grouped['2022-04-29'].slice(0, 10);
+
+    console.log(sortedData);
+
 
     
     const x = d3.scaleLinear()
