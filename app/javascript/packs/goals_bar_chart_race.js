@@ -124,9 +124,8 @@ $(document).ready(function(){
     
     // console.log(Array.isArray(data)) => true
 
-    const cleanData = data.sort((a, b) => d3.ascending(a.date, b.date));
 
-    var grouped = groupByKey(data, 'date');
+    var groupedByDate = groupByKey(data, 'date');
 
     function groupByKey(array, key) {
       return array
@@ -136,17 +135,16 @@ $(document).ready(function(){
         }, {})
     }
 
-    for (let obj of Object.values(grouped)) {
+    for (let obj of Object.values(groupedByDate)) {
       obj.sort((a, b) => d3.descending(a.goals, b.goals));
     }
 
-    console.log(grouped);
-
-    const sortedData = grouped['2022-04-29'].slice(0, 10);
+    // Slice of sorted data to display static chart.
+    // Also, this is ~ what each days kayframe should look like
+    // sortedData is an array of maps
+    const sortedData = groupedByDate['2022-04-29'].slice(0, 7);
 
     console.log(sortedData);
-
-
     
     const x = d3.scaleLinear()
       .domain([0, 75])
@@ -208,8 +206,8 @@ $(document).ready(function(){
       .call(xAxisCall)
       .call(g => g.select(".domain").remove());
 
-    console.log("bars");
-    console.log(bars);
+    // console.log("bars");
+    // console.log(bars);
 
     d3.interval(() => {
       console.log("Hello");
